@@ -24,7 +24,6 @@ server.post("/changepassword", async function (req, res) {
 
     const fakereqs = [ {"username":"2019309735","newPassword":"sertaopass", "oldPassword":"senha12334"},{"username":"201930973","newPassword":"sertaopass", "oldPassword":"senha12334"},{"username":"2019309735","newPassword":"sertaopass", "oldPassword":"senha1233"}]
     const fakeress = [{"status":200, "message":`Senha do usuário 201930973 alterada com sucesso`},{"status":404, "error":`O usuário 201930973 não foi encontrado`},{"status":401, "error":'A senha ATUAL está incorreta'}]
-    var code 
     for (let i = 0; i < fakereqs.length; i++) {
         if(isEquivalent(req.body, fakereqs[i])){
             res.statusCode = fakeress[i].status
