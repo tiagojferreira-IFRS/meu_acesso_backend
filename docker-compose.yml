@@ -1,0 +1,11 @@
+version: "3"
+services: 
+  ma-backend:
+    build: .
+    command: npm start
+    ports: 
+      - 8086:8086
+    volumes: 
+      - .:/usr/app/
+    
+    

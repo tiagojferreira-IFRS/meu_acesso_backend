@@ -45,6 +45,6 @@ function isEquivalent(a, b) {
 }
 
 
-server.listen(process.env.PORT || 3000, function () {
-    console.log("listening on: ", process.env.PORT || 3000)
+server.listen(process.env.PORT || 8086, function () {
+    console.log("listening on: ", process.env.PORT || 8086)
 })
