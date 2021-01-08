@@ -9,7 +9,6 @@ server.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
-    console.log("cros")
     next();
   });
 
@@ -22,16 +21,12 @@ server.get("/", function (req, res) {
 
 server.post("/search/sAMAccountName/:user", async function (req, res) {
     const response = await search(req.params.user);
-    res.statusCode = response.status
-    return res.json(response); 
+    return res.status(response.status).json(response); 
 })
 
 server.post("/changepassword", async function (req, res) {
-
-    const { username, newPassword, oldPassword } = req.body;
-    const response = await ChangePassword(username, newPassword, oldPassword);
-    res.statusCode = response.status
-    return res.json(response); 
+    const response = await ChangePassword(req.body.username, req.body.newPassword, req.body.oldPassword);
+    return res.status(response.status).json(response); 
 })
 
 server.listen(process.env.PORT || 3000, function () {
