@@ -14,7 +14,11 @@ const ldapClient = ldapjs.createClient({
 exports.search = (username) => new Promise((re,err) =>{
     ldapClient.bind(userRoot, ldapPassword, function (err) {
 
-        assert.ifError(err); 
+    try {
+        assert.ifError(err);
+    } catch (error) {
+        re({"status":500, error})
+    }
 
         var opts = {
             filter: `(&(objectClass=user)(sAMAccountName=${username}))`,
@@ -41,7 +45,11 @@ exports.search = (username) => new Promise((re,err) =>{
 exports.ChangePassword = (username, newPassword, oldPassword) => new Promise((re,err) =>{
     ldapClient.bind(userRoot, ldapPassword, function (err) {
 
-        assert.ifError(err); 
+        try {
+            assert.ifError(err);
+        } catch (error) {
+            re({"status":500, error})
+        }
 
         var opts = {
             filter: `(&(objectClass=user)(sAMAccountName=${username}))`,
