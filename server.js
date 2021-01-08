@@ -15,8 +15,14 @@ server.use(function (req, res, next) {
 server.use(bodyPaser.json())
 
 
-server.get("/", function (req, res) {
-    return res.json({"versão":"1.0.0"}); 
+server.get("/", async function (req, res) {
+    const response = await search('service_atelie');
+    if (response.status == 500) {
+        return res.status(500).json({"versão":"1.0.5", "Connection":false, 'error': response.error}); 
+    }else{
+        return res.status(200).json({"versão":"1.0.5", "Connection":true}); 
+    }
+    
 })
 
 server.post("/search/sAMAccountName/:user", async function (req, res) {
