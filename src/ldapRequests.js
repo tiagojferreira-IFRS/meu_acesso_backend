@@ -7,11 +7,12 @@ const userRoot = process.env.USERROOT;
 const ldapPassword = process.env.LDAPPASSWORD;
 const adSuffix = process.env.ADSUFFIX;
 
-const ldapClient = ldapjs.createClient({
-    url: process.env.LDAPURL
-});
 
 exports.search = (username) => new Promise((re,err) =>{
+    const ldapClient = ldapjs.createClient({
+        url: process.env.LDAPURL
+    });
+
     ldapClient.bind(userRoot, ldapPassword, function (err) {
 
     try {
@@ -43,6 +44,10 @@ exports.search = (username) => new Promise((re,err) =>{
 });
 
 exports.ChangePassword = (username, newPassword, oldPassword) => new Promise((re,err) =>{
+    const ldapClient = ldapjs.createClient({
+        url: process.env.LDAPURL
+    });
+    
     ldapClient.bind(userRoot, ldapPassword, function (err) {
 
         try {
