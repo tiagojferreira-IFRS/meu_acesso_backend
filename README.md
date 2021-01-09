@@ -38,8 +38,8 @@ ADSUFFIX=cn=Users,DC=atelie,DC=local
 
 ### Response
 
-    HTTP/1.1 500 internal server error
-    Status: 500 internal server error
+    HTTP/1.1 200 OK
+    Status: 200 OK
     Connection: close
     Content-Type: application/json
 
@@ -50,8 +50,8 @@ ADSUFFIX=cn=Users,DC=atelie,DC=local
 
 ### Error
 
-    HTTP/1.1 200 OK
-    Status: 200 OK
+    HTTP/1.1 500 internal server error
+    Status: 500 internal server error
     Connection: close
     Content-Type: application/json
 
