@@ -1,12 +1,86 @@
-# meu acesso API
+# Get start
+
+### Installation
+
+    npm install
+
+### Run
+
+    npm start
+
+or
+
+    node server.js
+    
+### configuration
+
+`.env` file
+
+```env
+PORT=3000
+
+# LDAP authentication
+LDAPURL=ldap://192.168.0.108
+
+USERROOT=ATELIE\Administrator 
+LDAPPASSWORD=Atelie@12345
+ADSUFFIX=cn=Users,DC=atelie,DC=local
+
+
+```
+
+# test connection
+
+
+`GET /`
+
+    curl -i -H 'Accept: application/json' http://localhost:3000/
+
+### Response
+
+    HTTP/1.1 500 internal server error
+    Status: 500 internal server error
+    Connection: close
+    Content-Type: application/json
+
+    {
+      "versão":"1.0.5", 
+      "Connection":true
+    }
+
+### Error
+
+    HTTP/1.1 200 OK
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+
+    {
+      "versão": "1.0.5",
+      "Connection": false,
+      "error": {
+        "generatedMessage": false,
+        "code": "ERR_ASSERTION",
+        "actual": {
+          "errno": -4039,
+          "code": "ETIMEDOUT",
+          "syscall": "connect",
+          "address": "192.168.0.108",
+          "port": 389
+        },
+        "expected": null,
+        "operator": "ifError"
+      }
+    }
+    
 
 ## Search user
 
 ### Request
 
-`POST /search/sAMAccountName/:user/`
+`POST /search/:user/`
 
-    curl -i -H 'Accept: application/json' http://localhost:3000/search/sAMAccountName/2019309735/
+    curl -i -H 'Accept: application/json' --request POST http://localhost:3000/search/2019309735/
 
 ### Response
 
